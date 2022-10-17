@@ -1,13 +1,13 @@
 const { NotImplementedError } = require('../extensions/index.js');
 
-// const { ListNode } = require('../extensions/list-node.js');
+const { ListNode } = require('../extensions/list-node.js');
 
 /**
  * Given a singly linked list of integers l and an integer k,
  * remove all elements from list l that have a value equal to k.
  *
- * @param {List} l
- * @param {Number} k
+ * @param {List} array
+ * @param {Number} value
  * @return {List}
  *
  * @example
@@ -22,9 +22,30 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(/* l, k */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function removeKFromList(array, value) {
+
+  let currentValue = array
+  let prevValue = null
+
+  while(currentValue) {
+    if (currentValue.value === value) {
+      if (!currentValue.next) {
+        prevValue.next = null
+        return array
+      }
+      if (!prevValue) {
+        array = currentValue.next
+        currentValue = currentValue.next
+      } else {
+        prevValue.next = currentValue.next
+        currentValue = currentValue.next
+      }
+    } else if (currentValue.value !== value) {
+      prevValue = currentValue
+      currentValue = currentValue.next
+    }
+  }
+  return array
 }
 
 module.exports = {
