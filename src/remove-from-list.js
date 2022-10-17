@@ -40,7 +40,7 @@ function removeKFromList(array, value) {
         prevValue.next = currentValue.next
         currentValue = currentValue.next
       }
-    } else if (currentValue.value !== value) {
+    } else if (currentValue.value !==  value) {
       prevValue = currentValue
       currentValue = currentValue.next
     }
